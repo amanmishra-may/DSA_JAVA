@@ -1,0 +1,90 @@
+public class reverseLL {
+ Node head;
+ int size = 0;
+ class Node{
+    int data;
+    Node next;
+
+    Node(int data){
+        this.data = data;
+        this.next = null;
+
+    }
+
+ }   
+
+ public void addElement(int data){
+    Node newNode = new Node(data);
+    size++;
+    if(head==null){
+        head = newNode;
+        return;
+    }
+
+    Node currNode = head;
+    while(currNode.next != null){
+        currNode = currNode.next;
+    }
+    currNode.next = newNode;
+ }
+
+ public int getSize(){
+    return size;
+ }
+
+ public void printLL(){
+    if(head == null){
+        System.out.println("List is Empty");
+    }
+     Node currNode = head;
+     while(currNode != null){
+        System.out.print(currNode.data + "->");
+        currNode = currNode.next;
+     }
+      System.out.println("NULL");
+
+
+    
+    }
+
+    public void reverseLinkedList(){
+        if(head == null || head.next == null ){
+            return;
+        }
+        
+
+        Node prevNode = head ;
+        Node currNode = head.next;
+
+        while(currNode != null){
+            Node nextNode = currNode.next;
+            currNode.next = prevNode ;
+            
+            prevNode = currNode;
+            currNode = nextNode;
+        }
+        head.next = null ;
+        head = prevNode;
+
+    }
+
+
+
+ 
+
+ public static void main(String[] args) {
+    reverseLL list = new reverseLL();
+
+    list.addElement(1);
+    list.addElement(3);
+    list.addElement(5);
+    list.addElement(7);
+    list.addElement(9);
+     
+    list.printLL();
+
+    list.reverseLinkedList();
+    list.printLL();
+
+ }
+}
